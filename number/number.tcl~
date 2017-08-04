@@ -1,0 +1,8 @@
+set $args[x]
+puts $x
+exit 0
+
+# OUTPUT:
+# Enter a number:
+# 12
+# 12
