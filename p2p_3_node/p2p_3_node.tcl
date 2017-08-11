@@ -25,8 +25,8 @@ $n0 label "UDP Source"
 $n1 label "TCP Source"
 $n2 label "TCP & UDP Sink"
 
-$ns duplex-link $n0 $n1 1.5Mb 10ms DropTail
-$ns duplex-link $n1 $n2 1.5Mb 20ms DropTail
+$ns duplex-link $n0 $n1 0.75Mb 10ms DropTail
+$ns duplex-link $n1 $n2 0.75Mb 20ms DropTail
 
 $ns duplex-link-op $n0 $n1 orient right
 $ns duplex-link-op $n1 $n2 orient down
