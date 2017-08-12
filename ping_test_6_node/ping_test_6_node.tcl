@@ -30,11 +30,11 @@ set n5 [$ns node]
 
 puts "nodes declared"
 
-$ns duplex-link $n0 $n2 2Mb 10ms DropTail
-$ns duplex-link $n1 $n2 2Mb 10ms DropTail
-$ns duplex-link $n3 $n4 2Mb 10ms DropTail
-$ns duplex-link $n3 $n5 2Mb 10ms DropTail
-$ns duplex-link $n3 $n2 2Mb 10ms DropTail
+$ns duplex-link $n0 $n2 2.00Mb 10ms DropTail
+$ns duplex-link $n1 $n2 2.00Mb 10ms DropTail
+$ns duplex-link $n3 $n4 2.00Mb 10ms DropTail
+$ns duplex-link $n3 $n5 2.00Mb 10ms DropTail
+$ns duplex-link $n3 $n2 2.00Mb 10ms DropTail
 
 $ns queue-limit $n2 $n3 10
 
@@ -74,22 +74,22 @@ proc sendPingPacket {} {
 	global ns ping0 ping1 ping4 ping5
 	set now [$ns now]
 	set pinginterval 0.01
-	$ns at [expr $now+$pinginterval] "$ping0 send"
-	$ns at [expr $now+$pinginterval] "$ping1 send"
-	$ns at [expr $now+$pinginterval] "$ping4 send"
-	$ns at [expr $now+$pinginterval] "$ping5 send"
-	puts "pings sent"
-	$ns at $now "sendPingPacket"
+	$ns at [expr $now + $pinginterval] "$ping0 send"
+	$ns at [expr $now + $pinginterval] "$ping1 send"
+	$ns at [expr $now + $pinginterval] "$ping4 send"
+	$ns at [expr $now + $pinginterval] "$ping5 send"
+	# puts "pings sent"
+	$ns at [expr $now + $pinginterval] "sendPingPacket"
 }
 
 Agent/Ping instproc recv { from rtt } {
-	$self instval node_
+	$self instvar node_
 	puts "ping from $from to [$node_ id] with rtt=$rtt"
 }
 
 $ns at 0.01 "sendPingPacket"
 $ns rtmodel-at 3.0 down $n2 $n3
 $ns rtmodel-at 5.0 up $n2 $n3
-$ns at 5.0 "finish"
+$ns at 10.0 "finish"
 
 $ns run
