@@ -11,7 +11,7 @@ proc finish {} {
 	$ns flush-trace
 	close $f
 	close $nf
-	# exec nam p2p_3_node.nam &
+#	exec nam p2p_3_node.nam &
 	exit 0
 }
 
@@ -25,8 +25,8 @@ $n0 label "UDP Source"
 $n1 label "TCP Source"
 $n2 label "TCP & UDP Sink"
 
-$ns duplex-link $n0 $n1 1.5Mb 10ms DropTail
-$ns duplex-link $n1 $n2 1.5Mb 20ms DropTail
+$ns duplex-link $n0 $n1 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n1 $n2 [lindex $argv 0]Mb 20ms DropTail
 
 $ns duplex-link-op $n0 $n1 orient right
 $ns duplex-link-op $n1 $n2 orient down
