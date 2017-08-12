@@ -10,11 +10,15 @@ if [ $# -eq 4 ]; then
 
 	cd $prog
 
-	if [ $(echo "$init < $finish" | bc) -eq 1 -a $(temp=$(echo "$init + $step" | bc); echo "$temp <= $finish" | bc) -eq 1 ]; then
+	if [ $(echo "$init <= $finish" | bc) -eq 1 -a $(temp=$(echo "$init + $step" | bc); echo "$temp <= $finish" | bc) -eq 1 ]; then
 		while [ $(echo "$init <= $finish" | bc) -eq 1 ] ; do
 			ns $prog.tcl $init
 			awk -f $prog.awk $prog.tr
-			init=$(echo "$init + $step" | bc)
+			if [ $step -ne 0 ]; then
+				init=$(echo "$init + $step" | bc)
+			else
+				exit 0
+			fi
 		done
 	fi
 else
