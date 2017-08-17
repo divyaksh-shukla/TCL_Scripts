@@ -17,7 +17,7 @@ proc finish {} {
 	$ns flush-trace
 	close $tr
 	close $nf
-	exec nam ping_test_6_node.nam &
+	# exec nam ping_test_6_node.nam &
 	exit 0
 }
 
@@ -28,13 +28,13 @@ set n3 [$ns node]
 set n4 [$ns node]
 set n5 [$ns node]
 
-puts "nodes declared"
+# puts "nodes declared"
 
-$ns duplex-link $n0 $n2 2.00Mb 10ms DropTail
-$ns duplex-link $n1 $n2 2.00Mb 10ms DropTail
-$ns duplex-link $n3 $n4 2.00Mb 10ms DropTail
-$ns duplex-link $n3 $n5 2.00Mb 10ms DropTail
-$ns duplex-link $n3 $n2 2.00Mb 10ms DropTail
+$ns duplex-link $n0 $n2 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n1 $n2 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n3 $n4 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n3 $n5 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n3 $n2 [lindex $argv 0]Mb 10ms DropTail
 
 $ns queue-limit $n2 $n3 10
 
@@ -44,14 +44,14 @@ $ns duplex-link-op $n3 $n4 orient right-up
 $ns duplex-link-op $n3 $n5 orient right-down
 $ns duplex-link-op $n3 $n2 orient left
 
-puts "nodes initialized"
+# puts "nodes initialized"
 
 set ping0 [new Agent/Ping]
 set ping1 [new Agent/Ping]
 set ping4 [new Agent/Ping]
 set ping5 [new Agent/Ping]
 
-puts "pings declared"
+# puts "pings declared"
 
 $ping0 set class_ 1
 $ping1 set class_ 2
@@ -63,7 +63,7 @@ $ns attach-agent $n1 $ping1
 $ns attach-agent $n4 $ping4
 $ns attach-agent $n5 $ping5
 
-puts "nodes attached to the pings"
+# puts "nodes attached to the pings"
 
 $ns connect $ping0 $ping5
 $ns connect $ping0 $ping4
@@ -84,7 +84,7 @@ proc sendPingPacket {} {
 
 Agent/Ping instproc recv { from rtt } {
 	$self instvar node_
-	puts "ping from $from to [$node_ id] with rtt=$rtt"
+	# puts "ping from $from to [$node_ id] with rtt=$rtt"
 }
 
 $ns at 0.01 "sendPingPacket"

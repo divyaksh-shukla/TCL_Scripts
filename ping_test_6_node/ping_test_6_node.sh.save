@@ -1,0 +1,16 @@
+#!/bin/bash
+
+bandwidth=2.00
+
+echo TitleText: Ping on 6 nodes > ping_test_6_node.xg
+echo XUnitText: "Bandwidth (in Mbps)" >> ping_test_6_node.xg
+echo YUnitText: "Packets dropped" >> ping_test_6_node.xg
+echo >> ping_test_6_node.xg
+
+for i in {0..10}
+do
+	ns ping_test_6_node.tcl $bandwidth
+	packets=`awk -f ping_test_6_node.awk ping_test_6_node.tr`
+	echo $bandwidth $packets >> ping_test_6_node.xg
+	let "
+done
