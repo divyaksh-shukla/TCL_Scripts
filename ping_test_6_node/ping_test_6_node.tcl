@@ -15,7 +15,7 @@ proc finish {} {
 	$ns flush-trace 
 	close $f
 	close $nf
-	exec nam ping_test_6_node.nam &
+#	exec nam ping_test_6_node.nam &
 	exit 0
 	
 }
@@ -27,11 +27,11 @@ set n3 [ $ns node ]
 set n4 [ $ns node ]
 set n5 [ $ns node ]
 
-$ns duplex-link $n0 $n2 3Mb 10ms DropTail
-$ns duplex-link $n1 $n2 3Mb 10ms DropTail
-$ns duplex-link $n3 $n4 3Mb 10ms DropTail
-$ns duplex-link $n3 $n5 3Mb 10ms DropTail
-$ns duplex-link $n3 $n2 3Mb 10ms DropTail
+$ns duplex-link $n0 $n2 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n1 $n2 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n3 $n4 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n3 $n5 [lindex $argv 0]Mb 10ms DropTail
+$ns duplex-link $n3 $n2 [lindex $argv 0]Mb 10ms DropTail
 
 $ns queue-limit $n2 $n3 10
 

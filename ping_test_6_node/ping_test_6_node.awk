@@ -5,5 +5,5 @@ BEGIN{
 	if(($1=="d")) { drops++; }
 }
 END{
-	printf("Dropped: %d \n ", drops);
+	printf("Number of dropped packets: %d \n ", drops);
 }

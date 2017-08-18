@@ -1,0 +1,15 @@
+TitleText: Packet dropping in ping testing of 6 nodes
+XUnitText: Bandwidth in Mbps
+YUnitText: Number of packets dropped
+
+"Ping Test"
+0.11 1558
+0.12 1401
+0.13 1395 
+0.14 1007
+0.15 864
+0.16 710
+0.17 891
+0.18 538
+0.19 240
+0.20 66
