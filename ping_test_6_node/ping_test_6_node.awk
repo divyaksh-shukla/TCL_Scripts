@@ -1,9 +1,9 @@
-BEGIN{
-	drops = 0;
+BEGIN {
+	droppedPackets = 0;
 }
 {
-	if(($1=="d")) { drops++; }
+	if($1 == "d"){ droppedPackets++; }
 }
-END{
-	printf("Number of dropped packets: %d \n ", drops);
+END {
+	printf("No. of dropped packets = %d \n\n", droppedPackets);
 }

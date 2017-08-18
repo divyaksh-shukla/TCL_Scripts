@@ -1,6 +1,6 @@
-TitleText: Performance Analysis
-XUnitText: Bandwidth (in Mbps)
-YUnitText: No. of packets dropped
+TitleText : Performance Analysis
+XUnitText : Bandwidth (in Mbps)
+YUnitText : No. of packets dropped
 
 "CBR"
 0.25 519
