@@ -13,7 +13,6 @@ $ns color 4 "Yellow"
 proc finish {} {
 
 	global ns nf tr
-	puts "finishing and wrapping up"
 	$ns flush-trace
 	close $tr
 	close $nf
@@ -78,7 +77,6 @@ proc sendPingPacket {} {
 	$ns at [expr $now + $pinginterval] "$ping1 send"
 	$ns at [expr $now + $pinginterval] "$ping4 send"
 	$ns at [expr $now + $pinginterval] "$ping5 send"
-	# puts "pings sent"
 	$ns at [expr $now + $pinginterval] "sendPingPacket"
 }
 
