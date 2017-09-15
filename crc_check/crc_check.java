@@ -21,9 +21,18 @@ class CRC16 {
 	public static void main(String args[]) {
 
 		String value;
-		int 
+		int msg[], app_msg[], gen[], rem[];
+		int i;
+
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the message text:");
+		value = scanner.next();
+		
+		msg = new int(value.length());
+		for(i = 0; i < value.length(); i++) {
+
+			msg[i] = Character.getNumericValue(value.charAt());
+		}
 		
 	}
 
