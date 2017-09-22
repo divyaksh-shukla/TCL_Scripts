@@ -3,7 +3,7 @@ import java.io.*;
 
 public class ContentsClient{
 	public static void main(String []args)throws IOException{
-		Socket sock = new Socket("127.0.0.1",4000);
+		Socket sock = new Socket(args[0],4000);
 		System.out.println("Enter the file name");
 
 		BufferedReader keyread = new BufferedReader(new InputStreamReader(System.in));

@@ -1,0 +1,74 @@
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+class UDPComm{
+	public static void main(String args[]) throws IOException{
+		UDPThreadServer udps = new UDPThreadServer(args[0], args[1], args[2], args[3]);
+		UDPThreadClient udpc = new UDPThreadClient();
+
+		try {
+			udps.start();
+			udpc.start();
+		}
+		catch(Exception e){
+			System.out.println(e.toString());
+		}
+	}
+}
+
+class UDPThreadServer extends Thread {
+	byte addr[4];
+	UDPThreadServer (String ip1, String ip2, String ip3, String ip4) {
+	
+		addr[0] = ip1;
+		addr[1] = ip2;
+		addr[2] = ip3;
+		addr[3] = ip4;
+		
+	}
+	public void run() {
+		InetAddress clientIP = InetAddress.getByAddress(addr);
+		System.out.println("Client IP : " + clientIP);
+		int clientPort = 2000;
+		byte buf[] = new byte[1024];
+		while(true) {
+		
+			DatagramSocket ds = new DatagramSocket();
+			BufferedReader br = new  BufferedReader(new InputStreamReader(System.in));
+
+			//System.out.println("Server is running...");
+
+			String str1 = new String(br.readLine());
+
+			buf = str1.getBytes();
+
+			DatagramPacket packet = new DatagramPacket(buf, str1.length(), clientIP, clientPort);
+
+			ds.send(packet);
+			//br.close();
+			ds.close();
+		}
+	}
+}
+
+class UDPThreadClient extends Thread {
+	byte buf[];
+	UDPThreadClient () {
+		buf = new byte[1024];
+	}
+	public void run() {
+		while(true){
+		DatagramSocket ds = new DatagramSocket(2000);
+		DatagramPacket dp = new DatagramPacket(buf, buf.length);
+
+		ds.receive(dp);
+
+		String str2 = new String(dp.getData(), 0, dp.getLength());
+
+		System.out.println("Server : " + str2);
+
+		ds.close();
+		}
+	}
+}
