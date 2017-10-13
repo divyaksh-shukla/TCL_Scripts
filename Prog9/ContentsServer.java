@@ -20,7 +20,7 @@ public class ContentsServer{
 		BufferedReader fileReader = new BufferedReader(new InputStreamReader(istream));
 		String fname = fileReader.readLine();
 
-		/*BufferedReader contentReader = new BufferedReader(new FileReader(fname));
+		BufferedReader contentReader = new BufferedReader(new FileReader(fname));
 
 		OutputStream ostream = sock.getOutputStream();
 		PrintWriter pwrite = new PrintWriter(ostream,true);
@@ -29,18 +29,18 @@ public class ContentsServer{
 		while((str = contentReader.readLine()) != null)
 			pwrite.println(str);
 
-		pwrite.close();*/
+		pwrite.close();
 
-		BufferedImage img = null;
+		/*BufferedImage img = null;
 
 		img = ImageIO.read(new File(fname));
-		ImageWriter(ImageIO.createImageOutputStream(sock.getOutputStream())).write(img, "png", sock.getOutputStream());
+		ImageWriter(ImageIO.createImageOutputStream(sock.getOutputStream())).write(img, "png", sock.getOutputStream());*/
 
 
 		sock.close();
-		sersock.close();
-		//contentReader.close();
-		//fileReader.close();
+		//sersock.close();
+		contentReader.close();
+		fileReader.close();
 		//iw.close();
 	}
 	}
