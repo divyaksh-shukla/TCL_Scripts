@@ -1,0 +1,12 @@
+Enter the Message tobe encrypted:
+kajsdhkjashdkjashd
+Enter value of p and q:
+5 
+7
+X:5
+Y:5
+11,1,10,19,4,8,11,10,1,19,8,4,11,10,1,19,8,4,
+
+Encrypted message:paexihpeaxhipeaxhi
+
+Decrypted message:kajsdhkjashdkjashd
