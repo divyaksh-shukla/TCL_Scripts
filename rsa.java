@@ -6,8 +6,10 @@ class RSA {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		BigInteger a = new BigInteger(11, 1, new Random());
-		BigInteger b = new BigInteger(11, 1, new Random());
+		//BigInteger a = new BigInteger(11, 1, new Random());
+		//BigInteger b = new BigInteger(11, 1, new Random());
+		BigInteger a = BigInteger.probablePrime(5, new Random());
+		BigInteger b = BigInteger.probablePrime(5, new Random());
 		BigInteger X = BigInteger.ZERO;
 		BigInteger Y = BigInteger.ZERO;
 		BigInteger N;
@@ -15,7 +17,7 @@ class RSA {
 		BigInteger k = BigInteger.valueOf(2);
 
 		System.out.println("a  :" + a);
-		System.out.println("b  :" + a);
+		System.out.println("b  :" + b);
 
 		N = a.multiply(b);
 		phi = a.subtract(BigInteger.ONE).multiply(b.subtract(BigInteger.ONE));
