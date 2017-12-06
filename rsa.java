@@ -3,13 +3,13 @@ import java.util.*;
 import java.math.*;
 
 class RSA {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader (new FileReader("message.txt"));
 
-		//BigInteger a = new BigInteger(11, 1, new Random());
-		//BigInteger b = new BigInteger(11, 1, new Random());
-		BigInteger a = BigInteger.probablePrime(5, new Random());
-		BigInteger b = BigInteger.probablePrime(5, new Random());
+		BigInteger a = new BigInteger(11, 1, new Random());
+		BigInteger b = new BigInteger(11, 1, new Random());
+		//BigInteger a = BigInteger.probablePrime(5, new Random());
+		//BigInteger b = BigInteger.probablePrime(5, new Random());
 		BigInteger X = BigInteger.ZERO;
 		BigInteger Y = BigInteger.ZERO;
 		BigInteger N;
@@ -45,14 +45,16 @@ class RSA {
 
 		// Y =
 
-		System.out.println("Public Key:\t" + X + "," + N);
-		System.out.println("Private Key:\t" + Y + "," + N);
-		String message;
+		System.out.println("Public Key:\t" + X + "\t," + N);
+		System.out.println("Private Key:\t" + Y + "\t," + N);
+		String message, line;
+		StringBuilder lines = new StringBuilder();
 
-		do {
-			System.out.print("Enter the message to be encrypted:");
-			message = sc.nextLine();
-		}while(message==null);
+		while((line = br.readLine()) != null) {
+			lines.append(line);
+		}
+		message = lines.toString();
+		System.out.println("Message length:" + message.length());
 
 		BigInteger[] msg = new BigInteger[message.length()];
 		BigInteger[] encrypt = new BigInteger[message.length()];
@@ -70,7 +72,7 @@ class RSA {
 			decrypt[i.intValue()] = encrypt[i.intValue()].modPow(Y,N);
 		}
 
-		System.out.println("\nEncoded Numbers:");
+		/*System.out.println("\nEncoded Numbers:");
 		for(BigInteger i = BigInteger.ZERO ; !(i.equals(BigInteger.valueOf(message.length()))) ; i = i.add(BigInteger.ONE)) {
 			System.out.print(msg[i.intValue()] + ",");
 		}
@@ -83,7 +85,7 @@ class RSA {
 		System.out.println("\nDecrypted Numbers:");
 		for(BigInteger i = BigInteger.ZERO ; !(i.equals(BigInteger.valueOf(message.length()))) ; i = i.add(BigInteger.ONE)) {
 			System.out.print(decrypt[i.intValue()] + ",");
-		}
+		}*/
 		System.out.println("\n\nDecrypted Message:");
 		for(BigInteger i = BigInteger.ZERO ; !(i.equals(BigInteger.valueOf(message.length()))) ; i = i.add(BigInteger.ONE)) {
 			System.out.print((char)(decrypt[i.intValue()].intValue()));
